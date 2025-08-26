@@ -11,21 +11,21 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Inertia\Response;
 
-class AuthenticatedSessionController extends Controller
+class AdminAuthenticatedSessionController extends Controller
 {
     /**
-     * Display the warga login view.
+     * Display the admin login view.
      */
     public function create(): Response
     {
-        return Inertia::render('auth/warga-login', [
+        return Inertia::render('auth/admin-login', [
             'canResetPassword' => Route::has('password.request'),
             'status' => session('status'),
         ]);
     }
 
     /**
-     * Handle an incoming authentication request.
+     * Handle an incoming admin authentication request.
      */
     public function store(LoginRequest $request): RedirectResponse
     {
@@ -33,7 +33,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended('/');
+        return redirect()->intended(route('dashboard', absolute: false));
     }
 
     /**
@@ -44,6 +44,7 @@ class AuthenticatedSessionController extends Controller
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();
+
         $request->session()->regenerateToken();
 
         return redirect('/');

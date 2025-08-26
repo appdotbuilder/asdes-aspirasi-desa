@@ -87,12 +87,12 @@ export default function Welcome({ auth }: Props) {
                                 </>
                             ) : (
                                 <>
-                                    <Link href={route('login')}>
+                                    <Link href={route('warga.login')}>
                                         <Button variant="outline" size="lg" className="px-8 py-3 text-lg font-semibold rounded-xl border-2 hover:scale-105 transition-all duration-300">
                                             🔑 Masuk
                                         </Button>
                                     </Link>
-                                    <Link href={route('register')}>
+                                    <Link href={route('warga.register')}>
                                         <Button size="lg" className="px-8 py-3 text-lg font-semibold rounded-xl hover:scale-105 transition-all duration-300">
                                             👥 Daftar
                                         </Button>
@@ -231,13 +231,13 @@ export default function Welcome({ auth }: Props) {
                             📝 Buat Laporan Sekarang
                         </Button>
                         {!auth?.user && (
-                            <Link href={route('register')}>
+                            <Link href={route('warga.register')}>
                                 <Button 
                                     size="lg" 
                                     variant="outline"
                                     className="border-2 border-white text-white hover:bg-white hover:text-blue-600 text-xl px-12 py-6 rounded-2xl font-bold hover:scale-105 transition-all duration-300 min-h-[64px]"
                                 >
-                                    👥 Daftar sebagai Admin
+                                    👥 Daftar Sekarang
                                 </Button>
                             </Link>
                         )}

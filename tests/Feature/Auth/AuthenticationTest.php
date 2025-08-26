@@ -20,10 +20,33 @@ test('users can authenticate using the login screen', function () {
     $response->assertRedirect(route('dashboard', absolute: false));
 });
 
+test('warga can authenticate using the warga login screen', function () {
+    $user = User::factory()->create();
+
+    $response = $this->post('/warga/login', [
+        'email' => $user->email,
+        'password' => 'password',
+    ]);
+
+    $this->assertAuthenticated();
+    $response->assertRedirect('/');
+});
+
 test('users can not authenticate with invalid password', function () {
     $user = User::factory()->create();
 
     $this->post('/login', [
+        'email' => $user->email,
+        'password' => 'wrong-password',
+    ]);
+
+    $this->assertGuest();
+});
+
+test('warga can not authenticate with invalid password', function () {
+    $user = User::factory()->create();
+
+    $this->post('/warga/login', [
         'email' => $user->email,
         'password' => 'wrong-password',
     ]);
