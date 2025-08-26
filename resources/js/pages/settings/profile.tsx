@@ -46,40 +46,40 @@ export default function Profile({ mustVerifyEmail, status }: { mustVerifyEmail: 
 
             <SettingsLayout>
                 <div className="space-y-6">
-                    <HeadingSmall title="Profile information" description="Update your name and email address" />
+                    <HeadingSmall title="👤 Informasi Profil" description="Kelola dan update informasi personal akun Anda" />
 
-                    <form onSubmit={submit} className="space-y-6">
-                        <div className="grid gap-2">
-                            <Label htmlFor="name">Name</Label>
+                    <form onSubmit={submit} className="space-y-8">
+                        <div className="grid gap-4">
+                            <Label htmlFor="name" className="text-lg font-semibold text-gray-900">👤 Nama Lengkap</Label>
 
                             <Input
                                 id="name"
-                                className="mt-1 block w-full"
+                                className="form-input-large"
                                 value={data.name}
                                 onChange={(e) => setData('name', e.target.value)}
                                 required
                                 autoComplete="name"
-                                placeholder="Full name"
+                                placeholder="Masukkan nama lengkap"
                             />
 
-                            <InputError className="mt-2" message={errors.name} />
+                            <InputError className="mt-2 text-lg" message={errors.name} />
                         </div>
 
-                        <div className="grid gap-2">
-                            <Label htmlFor="email">Email address</Label>
+                        <div className="grid gap-4">
+                            <Label htmlFor="email" className="text-lg font-semibold text-gray-900">📧 Alamat Email</Label>
 
                             <Input
                                 id="email"
                                 type="email"
-                                className="mt-1 block w-full"
+                                className="form-input-large"
                                 value={data.email}
                                 onChange={(e) => setData('email', e.target.value)}
                                 required
                                 autoComplete="username"
-                                placeholder="Email address"
+                                placeholder="nama@email.com"
                             />
 
-                            <InputError className="mt-2" message={errors.email} />
+                            <InputError className="mt-2 text-lg" message={errors.email} />
                         </div>
 
                         {mustVerifyEmail && auth.user.email_verified_at === null && (
@@ -104,8 +104,10 @@ export default function Profile({ mustVerifyEmail, status }: { mustVerifyEmail: 
                             </div>
                         )}
 
-                        <div className="flex items-center gap-4">
-                            <Button disabled={processing}>Save</Button>
+                        <div className="flex items-center gap-6 pt-4">
+                            <Button disabled={processing} size="lg" className="btn-primary-large">
+                                {processing ? '⏳ Menyimpan...' : '💾 Simpan Perubahan'}
+                            </Button>
 
                             <Transition
                                 show={recentlySuccessful}
@@ -114,7 +116,9 @@ export default function Profile({ mustVerifyEmail, status }: { mustVerifyEmail: 
                                 leave="transition ease-in-out"
                                 leaveTo="opacity-0"
                             >
-                                <p className="text-sm text-neutral-600">Saved</p>
+                                <p className="text-lg font-semibold text-green-600 flex items-center">
+                                    <span className="mr-2">✅</span> Berhasil Disimpan
+                                </p>
                             </Transition>
                         </div>
                     </form>

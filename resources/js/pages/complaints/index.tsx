@@ -106,11 +106,18 @@ export default function ComplaintsIndex({ complaints, stats }: Props) {
                             </div>
                             <span className="text-lg font-semibold text-gray-900">Asdes</span>
                         </Link>
-                        <Link href={route('complaints.create')}>
-                            <Button className="bg-blue-600 hover:bg-blue-700">
-                                📝 Buat Laporan
-                            </Button>
-                        </Link>
+                        <div className="flex space-x-4">
+                            <Link href={route('complaints.create')}>
+                                <Button size="lg" className="bg-blue-600 hover:bg-blue-700 px-8 py-3 text-lg font-semibold rounded-xl hover:scale-105 transition-all duration-300">
+                                    📝 Buat Laporan
+                                </Button>
+                            </Link>
+                            <Link href={route('help')}>
+                                <Button variant="outline" size="lg" className="px-8 py-3 text-lg font-semibold rounded-xl hover:scale-105 transition-all duration-300">
+                                    🆘 Bantuan
+                                </Button>
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -127,51 +134,51 @@ export default function ComplaintsIndex({ complaints, stats }: Props) {
                 </div>
 
                 {/* Stats Cards */}
-                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-                    <Card>
-                        <CardContent className="pt-6">
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <Card className="hover:shadow-lg transition-all duration-300 hover:scale-105 border-0 bg-gradient-to-br from-blue-50 to-blue-100">
+                        <CardContent className="pt-8 pb-6">
                             <div className="flex items-center justify-between">
                                 <div>
-                                    <p className="text-sm font-medium text-gray-600">Total Laporan</p>
-                                    <p className="text-2xl font-bold text-gray-900">{stats.total}</p>
+                                    <p className="text-lg font-semibold text-gray-700 mb-2">Total Laporan</p>
+                                    <p className="text-4xl font-bold text-gray-900">{stats.total}</p>
                                 </div>
-                                <div className="text-3xl">📊</div>
+                                <div className="text-5xl animate-bounce">📊</div>
                             </div>
                         </CardContent>
                     </Card>
 
-                    <Card>
-                        <CardContent className="pt-6">
+                    <Card className="hover:shadow-lg transition-all duration-300 hover:scale-105 border-0 bg-gradient-to-br from-yellow-50 to-yellow-100">
+                        <CardContent className="pt-8 pb-6">
                             <div className="flex items-center justify-between">
                                 <div>
-                                    <p className="text-sm font-medium text-gray-600">Menunggu</p>
-                                    <p className="text-2xl font-bold text-yellow-600">{stats.pending}</p>
+                                    <p className="text-lg font-semibold text-gray-700 mb-2">Menunggu</p>
+                                    <p className="text-4xl font-bold text-yellow-600">{stats.pending}</p>
                                 </div>
-                                <div className="text-3xl">⏳</div>
+                                <div className="text-5xl animate-pulse">⏳</div>
                             </div>
                         </CardContent>
                     </Card>
 
-                    <Card>
-                        <CardContent className="pt-6">
+                    <Card className="hover:shadow-lg transition-all duration-300 hover:scale-105 border-0 bg-gradient-to-br from-blue-50 to-blue-100">
+                        <CardContent className="pt-8 pb-6">
                             <div className="flex items-center justify-between">
                                 <div>
-                                    <p className="text-sm font-medium text-gray-600">Sedang Ditangani</p>
-                                    <p className="text-2xl font-bold text-blue-600">{stats.in_progress}</p>
+                                    <p className="text-lg font-semibold text-gray-700 mb-2">Ditangani</p>
+                                    <p className="text-4xl font-bold text-blue-600">{stats.in_progress}</p>
                                 </div>
-                                <div className="text-3xl">🔧</div>
+                                <div className="text-5xl animate-spin" style={{animationDuration: '2s'}}>🔧</div>
                             </div>
                         </CardContent>
                     </Card>
 
-                    <Card>
-                        <CardContent className="pt-6">
+                    <Card className="hover:shadow-lg transition-all duration-300 hover:scale-105 border-0 bg-gradient-to-br from-green-50 to-green-100">
+                        <CardContent className="pt-8 pb-6">
                             <div className="flex items-center justify-between">
                                 <div>
-                                    <p className="text-sm font-medium text-gray-600">Selesai</p>
-                                    <p className="text-2xl font-bold text-green-600">{stats.resolved}</p>
+                                    <p className="text-lg font-semibold text-gray-700 mb-2">Selesai</p>
+                                    <p className="text-4xl font-bold text-green-600">{stats.resolved}</p>
                                 </div>
-                                <div className="text-3xl">✅</div>
+                                <div className="text-5xl animate-bounce">✅</div>
                             </div>
                         </CardContent>
                     </Card>
@@ -188,33 +195,33 @@ export default function ComplaintsIndex({ complaints, stats }: Props) {
                                 {complaints.data.map((complaint) => (
                                     <div
                                         key={complaint.id}
-                                        className="border rounded-lg p-4 hover:shadow-md transition-shadow cursor-pointer"
+                                        className="border-2 rounded-2xl p-6 hover:shadow-xl transition-all duration-300 cursor-pointer hover:scale-102 bg-white border-gray-200 hover:border-blue-300"
                                         onClick={() => router.get(route('complaints.show', complaint.id))}
                                     >
                                         <div className="flex items-start justify-between">
                                             <div className="flex-1">
-                                                <div className="flex items-center space-x-2 mb-2">
-                                                    <span className="text-lg">
+                                                <div className="flex items-center space-x-3 mb-3">
+                                                    <span className="text-2xl">
                                                         {getCategoryIcon(complaint.category)}
                                                     </span>
-                                                    <Badge variant="outline" className="text-xs">
+                                                    <Badge variant="outline" className="text-sm px-3 py-1 font-semibold">
                                                         {getCategoryText(complaint.category)}
                                                     </Badge>
-                                                    <Badge className={`text-xs ${getStatusColor(complaint.status)}`}>
+                                                    <Badge className={`text-sm px-3 py-1 font-semibold ${getStatusColor(complaint.status)}`}>
                                                         {getStatusText(complaint.status)}
                                                     </Badge>
                                                 </div>
                                                 
-                                                <h3 className="font-semibold text-gray-900 mb-1">
+                                                <h3 className="font-bold text-xl text-gray-900 mb-3 leading-tight">
                                                     {complaint.title}
                                                 </h3>
                                                 
-                                                <p className="text-sm text-gray-600 mb-2">
-                                                    📍 {complaint.location}
+                                                <p className="text-lg text-gray-600 mb-3 flex items-center">
+                                                    <span className="text-xl mr-2">📍</span> {complaint.location}
                                                 </p>
                                                 
-                                                <p className="text-xs text-gray-500">
-                                                    📅 {formatDate(complaint.created_at)}
+                                                <p className="text-sm text-gray-500 flex items-center">
+                                                    <span className="text-base mr-2">📅</span> {formatDate(complaint.created_at)}
                                                 </p>
                                             </div>
                                             

@@ -71,18 +71,31 @@ export default function Welcome({ auth }: Props) {
                                 <p className="text-sm text-gray-500">Aspirasi Desa</p>
                             </div>
                         </div>
-                        <div className="flex space-x-3">
+                        <div className="flex space-x-4">
                             {auth?.user ? (
-                                <Link href={route('dashboard')}>
-                                    <Button>Dashboard</Button>
-                                </Link>
+                                <>
+                                    <Link href={route('dashboard')}>
+                                        <Button size="lg" className="px-8 py-3 text-lg font-semibold rounded-xl hover:scale-105 transition-all duration-300">
+                                            📊 Dashboard
+                                        </Button>
+                                    </Link>
+                                    <Link href={route('help')}>
+                                        <Button variant="outline" size="lg" className="px-8 py-3 text-lg font-semibold rounded-xl hover:scale-105 transition-all duration-300">
+                                            🆘 Bantuan
+                                        </Button>
+                                    </Link>
+                                </>
                             ) : (
                                 <>
                                     <Link href={route('login')}>
-                                        <Button variant="outline">Masuk</Button>
+                                        <Button variant="outline" size="lg" className="px-8 py-3 text-lg font-semibold rounded-xl border-2 hover:scale-105 transition-all duration-300">
+                                            🔑 Masuk
+                                        </Button>
                                     </Link>
                                     <Link href={route('register')}>
-                                        <Button>Daftar</Button>
+                                        <Button size="lg" className="px-8 py-3 text-lg font-semibold rounded-xl hover:scale-105 transition-all duration-300">
+                                            👥 Daftar
+                                        </Button>
                                     </Link>
                                 </>
                             )}
@@ -93,34 +106,58 @@ export default function Welcome({ auth }: Props) {
 
             {/* Hero Section */}
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-                <div className="text-center">
-                    <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-                        🏘️ <span className="text-blue-600">Asdes</span>
-                    </h1>
-                    <p className="text-xl md:text-2xl text-gray-600 mb-4">
-                        Platform Aspirasi dan Pelaporan Infrastruktur Desa
-                    </p>
-                    <p className="text-lg text-gray-500 mb-8 max-w-3xl mx-auto">
-                        Laporkan masalah infrastruktur desa dengan mudah dan pantau progress penanganannya. 
-                        Bantu pemerintah desa dalam meningkatkan kualitas infrastruktur dan pelayanan publik.
-                    </p>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    {/* Content */}
+                    <div className="text-center lg:text-left order-2 lg:order-1">
+                        <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+                            🏘️ <span className="text-blue-600">Asdes</span>
+                        </h1>
+                        <p className="text-xl md:text-2xl text-gray-600 mb-4">
+                            Platform Aspirasi dan Pelaporan Infrastruktur Desa
+                        </p>
+                        <p className="text-lg text-gray-500 mb-8">
+                            Laporkan masalah infrastruktur desa dengan mudah dan pantau progress penanganannya. 
+                            Bantu pemerintah desa dalam meningkatkan kualitas infrastruktur dan pelayanan publik.
+                        </p>
+                        
+                        <div className="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start">
+                            <Button 
+                                size="lg" 
+                                onClick={handleCreateComplaint}
+                                className="bg-blue-600 hover:bg-blue-700 text-xl px-12 py-6 rounded-2xl font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 min-h-[60px]"
+                            >
+                                📝 Buat Laporan Sekarang
+                            </Button>
+                            <Button 
+                                size="lg" 
+                                variant="outline" 
+                                onClick={handleViewComplaints}
+                                className="text-xl px-12 py-6 rounded-2xl font-semibold border-2 border-blue-600 text-blue-600 hover:bg-blue-50 hover:scale-105 transition-all duration-300 min-h-[60px]"
+                            >
+                                📋 Lihat Semua Laporan
+                            </Button>
+                        </div>
+                    </div>
                     
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <Button 
-                            size="lg" 
-                            onClick={handleCreateComplaint}
-                            className="bg-blue-600 hover:bg-blue-700 text-lg px-8 py-3"
-                        >
-                            📝 Buat Laporan
-                        </Button>
-                        <Button 
-                            size="lg" 
-                            variant="outline" 
-                            onClick={handleViewComplaints}
-                            className="text-lg px-8 py-3"
-                        >
-                            📋 Lihat Laporan
-                        </Button>
+                    {/* Educational Illustration */}
+                    <div className="order-1 lg:order-2">
+                        <div className="illustration-placeholder">
+                            <div className="illustration-content">
+                                <div className="text-8xl mb-6 animate-gentle-pulse">🏛️</div>
+                                <div className="space-y-3">
+                                    <div className="flex items-center justify-center space-x-4 text-4xl">
+                                        <span className="animate-bounce" style={{animationDelay: '0s'}}>👥</span>
+                                        <span className="text-2xl text-gray-600">→</span>
+                                        <span className="animate-bounce" style={{animationDelay: '0.2s'}}>📱</span>
+                                        <span className="text-2xl text-gray-600">→</span>
+                                        <span className="animate-bounce" style={{animationDelay: '0.4s'}}>🏗️</span>
+                                    </div>
+                                    <p className="text-lg font-semibold text-gray-700">
+                                        Warga → Laporan → Tindak Lanjut
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -136,15 +173,15 @@ export default function Welcome({ auth }: Props) {
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                     {features.map((feature, index) => (
-                        <Card key={index} className="text-center hover:shadow-lg transition-shadow">
-                            <CardHeader>
-                                <div className="text-4xl mb-2">{feature.icon}</div>
-                                <CardTitle className="text-lg">{feature.title}</CardTitle>
+                        <Card key={index} className="text-center hover:shadow-2xl transition-all duration-500 hover:scale-105 border-0 bg-white/80 backdrop-blur-sm">
+                            <CardHeader className="pb-4">
+                                <div className="text-6xl mb-4 animate-bounce" style={{animationDelay: `${index * 200}ms`}}>{feature.icon}</div>
+                                <CardTitle className="text-xl font-bold">{feature.title}</CardTitle>
                             </CardHeader>
                             <CardContent>
-                                <CardDescription className="text-base">
+                                <CardDescription className="text-lg leading-relaxed">
                                     {feature.description}
                                 </CardDescription>
                             </CardContent>
@@ -165,11 +202,11 @@ export default function Welcome({ auth }: Props) {
                         </p>
                     </div>
 
-                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
                         {categories.map((category, index) => (
-                            <div key={index} className="bg-white rounded-xl p-6 text-center hover:shadow-md transition-shadow">
-                                <div className="text-3xl mb-3">{category.icon}</div>
-                                <h3 className="font-medium text-gray-900">{category.name}</h3>
+                            <div key={index} className="bg-white rounded-2xl p-8 text-center hover:shadow-xl transition-all duration-300 hover:scale-110 cursor-pointer border-0">
+                                <div className="text-5xl mb-4 animate-pulse" style={{animationDelay: `${index * 150}ms`}}>{category.icon}</div>
+                                <h3 className="font-semibold text-lg text-gray-900">{category.name}</h3>
                             </div>
                         ))}
                     </div>
@@ -185,11 +222,11 @@ export default function Welcome({ auth }: Props) {
                     <p className="text-xl mb-8 opacity-90">
                         Bergabunglah dengan warga lainnya dalam membangun desa yang lebih baik
                     </p>
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                    <div className="flex flex-col sm:flex-row gap-6 justify-center">
                         <Button 
                             size="lg" 
                             onClick={handleCreateComplaint}
-                            className="bg-white text-blue-600 hover:bg-gray-100 text-lg px-8 py-3"
+                            className="bg-white text-blue-600 hover:bg-gray-100 text-xl px-12 py-6 rounded-2xl font-bold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 min-h-[64px]"
                         >
                             📝 Buat Laporan Sekarang
                         </Button>
@@ -198,7 +235,7 @@ export default function Welcome({ auth }: Props) {
                                 <Button 
                                     size="lg" 
                                     variant="outline"
-                                    className="border-white text-white hover:bg-white hover:text-blue-600 text-lg px-8 py-3"
+                                    className="border-2 border-white text-white hover:bg-white hover:text-blue-600 text-xl px-12 py-6 rounded-2xl font-bold hover:scale-105 transition-all duration-300 min-h-[64px]"
                                 >
                                     👥 Daftar sebagai Admin
                                 </Button>

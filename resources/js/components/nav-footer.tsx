@@ -2,6 +2,7 @@ import { Icon } from '@/components/icon';
 import { SidebarGroup, SidebarGroupContent, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { type NavItem } from '@/types';
 import { type ComponentPropsWithoutRef } from 'react';
+import { Link } from '@inertiajs/react';
 
 export function NavFooter({
     items,
@@ -18,12 +19,19 @@ export function NavFooter({
                         <SidebarMenuItem key={item.title}>
                             <SidebarMenuButton
                                 asChild
-                                className="text-neutral-600 hover:text-neutral-800 dark:text-neutral-300 dark:hover:text-neutral-100"
+                                className="text-neutral-600 hover:text-neutral-800 dark:text-neutral-300 dark:hover:text-neutral-100 min-h-[48px]"
                             >
-                                <a href={item.href} target="_blank" rel="noopener noreferrer">
-                                    {item.icon && <Icon iconNode={item.icon} className="h-5 w-5" />}
-                                    <span>{item.title}</span>
-                                </a>
+                                {item.href.startsWith('http') ? (
+                                    <a href={item.href} target="_blank" rel="noopener noreferrer">
+                                        {item.icon && <Icon iconNode={item.icon} className="h-6 w-6" />}
+                                        <span className="text-base font-medium">{item.title}</span>
+                                    </a>
+                                ) : (
+                                    <Link href={item.href}>
+                                        {item.icon && <Icon iconNode={item.icon} className="h-6 w-6" />}
+                                        <span className="text-base font-medium">{item.title}</span>
+                                    </Link>
+                                )}
                             </SidebarMenuButton>
                         </SidebarMenuItem>
                     ))}

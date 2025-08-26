@@ -15,6 +15,15 @@ Route::get('/', function () {
     return Inertia::render('welcome');
 })->name('home');
 
+// Help and Tutorial pages
+Route::get('/help', function () {
+    return Inertia::render('help');
+})->name('help');
+
+Route::get('/video-tutorials', function () {
+    return Inertia::render('video-tutorials');
+})->name('video-tutorials');
+
 // Public complaint routes
 Route::resource('complaints', ComplaintController::class)
     ->only(['index', 'create', 'store', 'show']);

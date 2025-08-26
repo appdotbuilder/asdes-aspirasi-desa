@@ -55,9 +55,18 @@ export default function CreateComplaint() {
                             </div>
                             <span className="text-lg font-semibold text-gray-900">Asdes</span>
                         </Link>
-                        <Link href={route('complaints.index')}>
-                            <Button variant="outline">📋 Lihat Laporan</Button>
-                        </Link>
+                        <div className="flex space-x-4">
+                            <Link href={route('complaints.index')}>
+                                <Button variant="outline" size="lg" className="px-8 py-3 text-lg font-semibold rounded-xl hover:scale-105 transition-all duration-300">
+                                    📋 Lihat Laporan
+                                </Button>
+                            </Link>
+                            <Link href={route('help')}>
+                                <Button variant="outline" size="lg" className="px-8 py-3 text-lg font-semibold rounded-xl hover:scale-105 transition-all duration-300">
+                                    🆘 Bantuan
+                                </Button>
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -80,40 +89,40 @@ export default function CreateComplaint() {
                         <form onSubmit={handleSubmit} className="space-y-6">
                             {/* Title */}
                             <div>
-                                <Label htmlFor="title">Judul Laporan *</Label>
+                                <Label htmlFor="title" className="text-lg font-semibold text-gray-900">Judul Laporan *</Label>
                                 <Input
                                     id="title"
                                     value={data.title}
                                     onChange={(e) => setData('title', e.target.value)}
                                     placeholder="Contoh: Jalan berlubang di RT 01"
-                                    className="mt-1"
+                                    className="mt-2 p-4 text-lg rounded-xl border-2 focus:border-blue-500 transition-colors min-h-[56px]"
                                 />
                                 {errors.title && <p className="text-sm text-red-600 mt-1">{errors.title}</p>}
                             </div>
 
                             {/* Description */}
                             <div>
-                                <Label htmlFor="description">Deskripsi Masalah *</Label>
+                                <Label htmlFor="description" className="text-lg font-semibold text-gray-900">Deskripsi Masalah *</Label>
                                 <Textarea
                                     id="description"
                                     value={data.description}
                                     onChange={(e) => setData('description', e.target.value)}
                                     placeholder="Jelaskan masalah infrastruktur secara detail..."
-                                    rows={4}
-                                    className="mt-1"
+                                    rows={6}
+                                    className="mt-2 p-4 text-lg rounded-xl border-2 focus:border-blue-500 transition-colors resize-none"
                                 />
                                 {errors.description && <p className="text-sm text-red-600 mt-1">{errors.description}</p>}
                             </div>
 
                             {/* Location */}
                             <div>
-                                <Label htmlFor="location">Lokasi *</Label>
+                                <Label htmlFor="location" className="text-lg font-semibold text-gray-900">Lokasi *</Label>
                                 <Input
                                     id="location"
                                     value={data.location}
                                     onChange={(e) => setData('location', e.target.value)}
                                     placeholder="Contoh: RT 01, RW 02, Desa Sukamaju"
-                                    className="mt-1"
+                                    className="mt-2 p-4 text-lg rounded-xl border-2 focus:border-blue-500 transition-colors min-h-[56px]"
                                 />
                                 {errors.location && <p className="text-sm text-red-600 mt-1">{errors.location}</p>}
                             </div>
@@ -210,16 +219,17 @@ export default function CreateComplaint() {
                                 </div>
                             </div>
 
-                            <div className="flex flex-col sm:flex-row gap-4 pt-6">
+                            <div className="flex flex-col sm:flex-row gap-6 pt-8">
                                 <Button
                                     type="submit"
                                     disabled={processing}
-                                    className="flex-1 bg-blue-600 hover:bg-blue-700"
+                                    size="lg"
+                                    className="flex-1 bg-blue-600 hover:bg-blue-700 text-xl px-12 py-6 rounded-2xl font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 min-h-[64px]"
                                 >
-                                    {processing ? 'Mengirim...' : '📤 Kirim Laporan'}
+                                    {processing ? '⏳ Mengirim...' : '📤 Kirim Laporan Sekarang'}
                                 </Button>
                                 <Link href="/">
-                                    <Button type="button" variant="outline" className="w-full sm:w-auto">
+                                    <Button type="button" variant="outline" size="lg" className="w-full sm:w-auto px-12 py-6 text-xl rounded-2xl font-semibold border-2 hover:scale-105 transition-all duration-300 min-h-[64px]">
                                         ❌ Batal
                                     </Button>
                                 </Link>

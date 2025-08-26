@@ -146,63 +146,63 @@ export default function Dashboard({ complaints, stats, categoryStats }: Props) {
                 </div>
 
                 {/* Stats Overview */}
-                <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
-                    <Card>
-                        <CardContent className="pt-6">
+                <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
+                    <Card className="hover:shadow-xl transition-all duration-300 hover:scale-105 border-0 bg-gradient-to-br from-blue-50 to-blue-100">
+                        <CardContent className="pt-8 pb-6">
                             <div className="flex items-center justify-between">
                                 <div>
-                                    <p className="text-sm font-medium text-gray-600">Total Laporan</p>
-                                    <p className="text-2xl font-bold text-gray-900">{stats.total}</p>
+                                    <p className="text-lg font-semibold text-gray-700 mb-2">Total Laporan</p>
+                                    <p className="text-4xl font-bold text-gray-900">{stats.total}</p>
                                 </div>
-                                <div className="text-3xl">📊</div>
+                                <div className="text-5xl animate-bounce">📊</div>
                             </div>
                         </CardContent>
                     </Card>
 
-                    <Card>
-                        <CardContent className="pt-6">
+                    <Card className="hover:shadow-xl transition-all duration-300 hover:scale-105 border-0 bg-gradient-to-br from-yellow-50 to-yellow-100">
+                        <CardContent className="pt-8 pb-6">
                             <div className="flex items-center justify-between">
                                 <div>
-                                    <p className="text-sm font-medium text-gray-600">Menunggu</p>
-                                    <p className="text-2xl font-bold text-yellow-600">{stats.pending}</p>
+                                    <p className="text-lg font-semibold text-gray-700 mb-2">Menunggu</p>
+                                    <p className="text-4xl font-bold text-yellow-600">{stats.pending}</p>
                                 </div>
-                                <div className="text-3xl">⏳</div>
+                                <div className="text-5xl animate-pulse">⏳</div>
                             </div>
                         </CardContent>
                     </Card>
 
-                    <Card>
-                        <CardContent className="pt-6">
+                    <Card className="hover:shadow-xl transition-all duration-300 hover:scale-105 border-0 bg-gradient-to-br from-blue-50 to-blue-100">
+                        <CardContent className="pt-8 pb-6">
                             <div className="flex items-center justify-between">
                                 <div>
-                                    <p className="text-sm font-medium text-gray-600">Sedang Ditangani</p>
-                                    <p className="text-2xl font-bold text-blue-600">{stats.in_progress}</p>
+                                    <p className="text-lg font-semibold text-gray-700 mb-2">Ditangani</p>
+                                    <p className="text-4xl font-bold text-blue-600">{stats.in_progress}</p>
                                 </div>
-                                <div className="text-3xl">🔧</div>
+                                <div className="text-5xl animate-spin" style={{animationDuration: '2s'}}>🔧</div>
                             </div>
                         </CardContent>
                     </Card>
 
-                    <Card>
-                        <CardContent className="pt-6">
+                    <Card className="hover:shadow-xl transition-all duration-300 hover:scale-105 border-0 bg-gradient-to-br from-green-50 to-green-100">
+                        <CardContent className="pt-8 pb-6">
                             <div className="flex items-center justify-between">
                                 <div>
-                                    <p className="text-sm font-medium text-gray-600">Selesai</p>
-                                    <p className="text-2xl font-bold text-green-600">{stats.resolved}</p>
+                                    <p className="text-lg font-semibold text-gray-700 mb-2">Selesai</p>
+                                    <p className="text-4xl font-bold text-green-600">{stats.resolved}</p>
                                 </div>
-                                <div className="text-3xl">✅</div>
+                                <div className="text-5xl animate-bounce">✅</div>
                             </div>
                         </CardContent>
                     </Card>
 
-                    <Card>
-                        <CardContent className="pt-6">
+                    <Card className="hover:shadow-xl transition-all duration-300 hover:scale-105 border-0 bg-gradient-to-br from-red-50 to-red-100">
+                        <CardContent className="pt-8 pb-6">
                             <div className="flex items-center justify-between">
                                 <div>
-                                    <p className="text-sm font-medium text-gray-600">Ditolak</p>
-                                    <p className="text-2xl font-bold text-red-600">{stats.rejected}</p>
+                                    <p className="text-lg font-semibold text-gray-700 mb-2">Ditolak</p>
+                                    <p className="text-4xl font-bold text-red-600">{stats.rejected}</p>
                                 </div>
-                                <div className="text-3xl">❌</div>
+                                <div className="text-5xl animate-pulse">❌</div>
                             </div>
                         </CardContent>
                     </Card>
@@ -296,30 +296,30 @@ export default function Dashboard({ complaints, stats, categoryStats }: Props) {
                         <CardTitle className="text-xl">⚡ Aksi Cepat</CardTitle>
                     </CardHeader>
                     <CardContent>
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                             <Link href={route('complaints.index')}>
-                                <Button className="w-full h-16 bg-blue-600 hover:bg-blue-700">
+                                <Button className="w-full h-24 bg-blue-600 hover:bg-blue-700 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
                                     <div className="text-center">
-                                        <div className="text-2xl mb-1">📋</div>
-                                        <div>Kelola Semua Laporan</div>
+                                        <div className="text-4xl mb-2">📋</div>
+                                        <div className="text-lg font-semibold">Kelola Semua Laporan</div>
                                     </div>
                                 </Button>
                             </Link>
                             
                             <Link href="/">
-                                <Button variant="outline" className="w-full h-16">
+                                <Button variant="outline" className="w-full h-24 border-2 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
                                     <div className="text-center">
-                                        <div className="text-2xl mb-1">🌐</div>
-                                        <div>Lihat Situs Publik</div>
+                                        <div className="text-4xl mb-2">🌐</div>
+                                        <div className="text-lg font-semibold">Lihat Situs Publik</div>
                                     </div>
                                 </Button>
                             </Link>
                             
                             <Link href={route('complaints.create')}>
-                                <Button variant="outline" className="w-full h-16">
+                                <Button variant="outline" className="w-full h-24 border-2 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
                                     <div className="text-center">
-                                        <div className="text-2xl mb-1">📝</div>
-                                        <div>Buat Laporan Baru</div>
+                                        <div className="text-4xl mb-2">📝</div>
+                                        <div className="text-lg font-semibold">Buat Laporan Baru</div>
                                     </div>
                                 </Button>
                             </Link>
